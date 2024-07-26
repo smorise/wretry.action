@@ -59,7 +59,7 @@ runs:
   steps:
     - name: retry
       id: retry
-      uses: Wandalen/wretry.action/main@v3.5.0_js_action
+      uses: smorise/wretry.action/main@dev_js_1
       with:
         action: '${{ inputs.action }}'
         command: '${{ inputs.command }}'
