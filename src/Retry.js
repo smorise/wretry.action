@@ -20,14 +20,9 @@ function retry( scriptType )
     let timeoutGet = () => null;
     if( timeLimit )
     {
-      startTime = _.time.now();
       timeoutGet = () =>
       {
-        let now = _.time.now();
-        let spent = now - startTime;
-        if( spent >= timeLimit )
-        shouldRetry = false;
-        return timeLimit - spent;
+        return timeLimit;
       };
     }
 
@@ -186,6 +181,7 @@ function retry( scriptType )
   {
     _.error.attend( error );
     core.setFailed( _.error.brief( error.message ) );
+    core.exportVariable('ERROR_MESSAGE', error.message);
     return error;
   });
 
@@ -200,6 +196,7 @@ function retry( scriptType )
 
   function onError( err )
   {
+    core.exportVariable('ERROR_MESSAGE', error.message);
     _.error.attend( err );
     if( _.bool.is( shouldRetry ) )
     return shouldRetry;
