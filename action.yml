@@ -59,7 +59,7 @@ runs:
   steps:
     - name: retry
       id: retry
-      uses: smorise/wretry.action@v0.1_js_action
+      uses: smorise/wretry.action@v0.2_js_action_no_err
       with:
         action: '${{ inputs.action }}'
         command: '${{ inputs.command }}'
