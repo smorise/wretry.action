@@ -181,7 +181,6 @@ function retry( scriptType )
   {
     _.error.attend( error );
     core.setFailed( _.error.brief( error.message ) );
-    core.exportVariable('ERROR_MESSAGE', error.message);
     return error;
   });
 
@@ -196,7 +195,6 @@ function retry( scriptType )
 
   function onError( err )
   {
-    core.exportVariable('ERROR_MESSAGE', error.message);
     _.error.attend( err );
     if( _.bool.is( shouldRetry ) )
     return shouldRetry;
